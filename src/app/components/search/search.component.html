@@ -1,0 +1,21 @@
+<h3>Buscar</h3>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" 
+            #term
+            >
+            <button
+            (click)="search( term.value )"
+            type="button" class="btn btn-primary"
+            >Buscar
+            </button>
+        </div>
+    </div>
+
+    <div class="col">
+        <pre>
+            {{ resultsMovies | json }}
+        </pre>
+    </div>
+</div>

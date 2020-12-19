@@ -1,0 +1,91 @@
+
+<!-- <div class="row">
+    <div 
+    class="img-fluid" alt="..." width="100%">
+        <div class="card bg-dark text-white m-1">
+            <img src="assets/img/test-banner.jfif" class="card-img" alt="item">
+            <div class="card-img-overlay">
+              <h5 class="ml-60 card-title">Card title</h5>
+              <p class="ml-10 card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="ml-10 card-text">Last updated 3 mins ago</p>
+            </div>
+          </div>
+    </div>
+
+
+</div> -->
+<div *ngIf="detailsMovie">
+<div class="row">
+
+    <div class="col-md-1"></div>
+    <div class="col-md-4 text-center">
+      
+        <div>
+            <img src="assets/img/test.jpg" class="img-fluid" [alt]="detailsMovie.name" width="70%">
+    
+        </div>
+            
+            
+       
+        <div class="col mt-2 ">
+            <span
+            *ngFor="let genre of detailsMovie.genres" 
+            class="badge rounded-pill bg-primary text-white m-1">
+            {{ genre.name }}</span>
+        </div>
+      
+
+    </div>
+ 
+    
+
+    <div class="col-md-6">
+
+      
+            <p class="text-center fs-1 mt-4">
+                {{ detailsMovie.original_title }}
+            </p>
+       
+
+
+
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-5"></div>
+
+   <div class="col-md-7 mx-auto" style="margin-top: -0.50rem;">
+        <p class="fst-normal">
+            {{ detailsMovie.overview }}
+        </p>
+
+
+        <div class="row">
+
+            <div class="col">
+            <button class="btn btn-primary" type="button">
+                Agregar a Favoritos
+            </button>
+            </div>
+
+            <div class="col">
+            <button class="btn btn-danger" type="button">
+                Regresar
+            </button>
+            </div>
+            
+        </div>
+
+   </div>
+
+ 
+</div>
+
+</div>
+<!-- 
+<pre *ngIf="detailsMovie">
+        {{ detailsMovie | json }}
+    </pre> -->
