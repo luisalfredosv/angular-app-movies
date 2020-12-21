@@ -20,18 +20,10 @@ listTrending: any[] = [];
 listTvPopular: any[] = [];
 listTopRated: any[] = [];
 
+pathImgTrending: any[] = [];
+pathImgTvPopular: any[] = [];
+
 loader : boolean = false;
-
-// images : any[]= [
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')},
-//   {path: 'assets/img/test.jpg', action: console.log('hi')}
-
-// ];
 
   constructor(  private themoviedbservice: ThemoviedbService,
                 private router:Router ) { 
@@ -41,11 +33,14 @@ loader : boolean = false;
     // Obtener trending
     this.themoviedbservice.getTrending()
       .subscribe( (resp: any) => {
-        this.listTrending = resp;
+       
+        this.getMovieTrending(resp);  
+        this.pathImgTrending = resp.filter((index )  => index.poster_path != '' );   
+        
+        this.listTrending = resp.slice(10);
+        this.loader = false;
         console.log(this.listTrending);
 
-        this.getMovieTrending(this.listTrending);
-        this.loader = false;
 
     }, (errService) => {
 
@@ -61,9 +56,10 @@ loader : boolean = false;
     // Obtener tvPopular
     this.themoviedbservice.getTvPopular()
       .subscribe(( resp:any ) => {
-        this.listTvPopular = resp;
+        this.listTvPopular = resp.slice(10);
+        this.pathImgTvPopular = resp.filter((index ) => index.poster_path != '' );
         console.log(this.listTvPopular);
-        
+          
     }, (errService) => {
           console.error(errService);
     })
@@ -73,13 +69,13 @@ loader : boolean = false;
       .subscribe(( resp:any ) => {
         this.listTopRated = resp;
         console.log(this.listTopRated);
+
     }, (errService) => {
         console.error(errService)
     })
 
-
   }
-
+  
   ngOnInit(): void {
   }
 
@@ -96,6 +92,7 @@ loader : boolean = false;
     let maxRating = Math.max(...arrayTrending.map( (arrayTrending:any) => arrayTrending.popularity),0);
     this.mostPopularMovie = arrayTrending.find((arrayTrending:any)  =>arrayTrending.popularity === maxRating);
 
+    
   }
 
 }

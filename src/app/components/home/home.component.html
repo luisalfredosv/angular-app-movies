@@ -26,39 +26,38 @@
       </div>
 
 </div>
-<!-- <pre 
-*ngIf="mostPopularMovie"
->
-    {{ mostPopularMovie  | json}}
-</pre> -->
 <div class="row">
-    <!-- <div> -->
-        <!-- {{ listTrending | json }} -->
-        <!-- {{ listTopRated | json }}
 
-    </div> -->
+    <div
+    *ngIf="pathImgTrending"
+    >
+        <p class="fs-3 text-center">
+            Peliculas populares
+        </p>   
+        <carousel [lightDOM]='false'>
+            <div class="carousel-cell"
+            *ngFor="let item of pathImgTrending"
+            >
+                <img class="img-thumbnail" [src]=" item.poster_path   | loadimg:'w':200">
+            </div>
+        </carousel>
+    </div>
+    <div
+    *ngIf="pathImgTrending"
+    >
+        
+        <p class="fs-3 text-center">
+            Series populares
+        </p>   
+        <carousel [lightDOM]='false'>
+            <div class="carousel-cell"
+            *ngFor="let item of pathImgTvPopular"
+            >
+                <img class="img-thumbnail" [src]=" item.poster_path   | loadimg:'w':200">
+            </div>
+        </carousel>
+    </div>
 
-    <!-- <app-carousel></app-carousel> -->
-    <!-- <p class="fs-3">
-        Peliculas Populares
-    </p> 
-
-    <carousel
-        [images]=" listTrending.poster_path | loadimg:'w':200 ">
-    </carousel>
-
- 
-</div>
-<div class="row">
-    <p class="fs-3">
-        Series Populares
-    </p> 
-
-    <carousel
-        [images]="images">
-    </carousel> -->
-
- 
 </div>
 
 

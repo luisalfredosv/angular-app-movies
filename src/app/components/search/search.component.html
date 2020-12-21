@@ -42,7 +42,13 @@
             <h5 class="card-title">
                 {{ item.title }}
             </h5>
-            <p class="card-text">{{ item.overview }}</p>
+            <p 
+            *ngIf="item.overview"
+            class="card-text">{{ item.overview.substr(0,100) }}</p>
+            <p 
+            *ngIf="!item.overview"
+            class="card-text">Esta pelicula no contiene descripción</p>
+
           </div>
         </div>
       </div>

@@ -12,12 +12,11 @@
           </div>
     </div>
 
-
 </div> -->
+
 <div *ngIf="detailsMovie">
 <div class="row">
 
-    <div class="col-md-1"></div>
     <div class="col-md-4 text-center">
       
         <div>
@@ -43,7 +42,10 @@
 
     <div class="col-md-6">
 
-      
+
+       
+             
+         
             <p class="text-center fs-1 mt-4">
                 {{ detailsMovie.original_title }}
             </p>
@@ -59,13 +61,18 @@
 <div class="row">
     <div class="col-md-5"></div>
 
-   <div class="col-md-7 mx-auto" style="margin-top: -0.50rem;">
+   <div class="col-md-7 mx-auto"> <!--  style="margin-top: -0.50rem;"> -->
         <p class="fst-normal lh-base fs-5">
-            {{ detailsMovie.overview }}
+            {{ detailsMovie.overview.substr(0 ,100) }}
         </p>
 
 
-        <div class="row">
+        <!-- <img 
+        [src]="detailsMovie.backdrop_path | loadimg:'w':400" 
+         class="img-fluid" [alt]="detailsMovie.name" > -->
+
+
+        <div class="row mt-2">
 
             <div class="col">
             <button 

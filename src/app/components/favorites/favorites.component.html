@@ -4,16 +4,15 @@
   </h3> 
 </div>
   
-<!-- <div 
-*ngIf="!!listFavorites">
+<div *ngIf="(listFavorites | async)?.length==0">
+
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Notificación!</strong> No tienes películas en tu lista de favoritos
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-</div> -->
-<!-- {{ listFavorites | async }} -->
 
-<!-- *ngIf="listFavorites" -->
+</div>
+
 <div 
 class="row">
 
@@ -28,13 +27,13 @@ class="row">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">
+                <h5 class="card-title fs-3">
                   {{ item.name }}
                 </h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
-               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             
-              <p class="card-text"><small class="text-muted"> {{ item.date | date: 'yyyy' }}</small></p>
+              <p class="card-text fs-5"> {{ item.date | date: 'yyyy' }}</p>
 
              <div>
                  <button

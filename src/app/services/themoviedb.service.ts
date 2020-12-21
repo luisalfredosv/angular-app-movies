@@ -34,7 +34,7 @@ export class ThemoviedbService {
      
     return this.getQuery(`trending/${ media_type }/${ time_window }?api_key=${ this.api_key }&language=${ this.language }`)
       .pipe( map( (data:any) => {
-      return data.results.slice(10); 
+      return data.results; 
       }));
 
   }
@@ -46,7 +46,7 @@ export class ThemoviedbService {
 
     return this.getQuery(`tv/popular?language=${ this.language }&page=${ page }&api_key=${ this.api_key }`)
       .pipe( map( (data:any) => {
-        return data.results.slice(10); 
+        return data.results; 
       }));
   }
 

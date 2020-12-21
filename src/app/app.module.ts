@@ -13,7 +13,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 // Components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { CarouselComponent } from './components/shared/carousel/carousel.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
@@ -35,7 +34,6 @@ import { LoadimgPipe } from './pipes/loadimg.pipe';
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarouselComponent,
     HomeComponent,
     SearchComponent,
     MovieDetailsComponent,
@@ -49,7 +47,7 @@ import { LoadimgPipe } from './pipes/loadimg.pipe';
     HttpClientModule, // httpClient
     AppRoutingModule,
     IvyCarouselModule, // Carousel
-    StoreModule.forRoot({ MoviesFavoritas: reducer // Store
+    StoreModule.forRoot({ moviesfavoritas: reducer // Store
     }),
     StoreDevtoolsModule.instrument({ // Config devtools
       maxAge: 25,

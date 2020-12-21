@@ -1,8 +1,8 @@
 export class MoviesFavoritasStateModel {
-    MoviesFavoritas: MoviesFavoritas[];
+    MoviesFavoritas: Movie[];
   }
 
-export interface MoviesFavoritas {
+export interface Movie {
     id: number;
     name: string;
     imgUrl: string;

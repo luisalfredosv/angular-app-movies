@@ -7,6 +7,7 @@ import { AppState } from '../../store/app.state';
 import * as MoviesFavoritasActions from '../../store/favorites/favorites.actions';
 import { Location } from '@angular/common';
 
+import { Movie }  from '../../store/favorites/favorites.model'
 
 @Component({
   selector: 'app-movie-details',
@@ -42,7 +43,7 @@ export class MovieDetailsComponent implements OnInit {
 
   }
 
-  addToFavorites( id:number, name:string, imgUrl:any, date:Date ){
+  addToFavorites( id:number, name:string, imgUrl:string, date:Date ) {
 
     this.store.dispatch(new MoviesFavoritasActions.AddFav(
       {
