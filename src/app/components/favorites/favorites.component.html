@@ -13,13 +13,12 @@
 </div> -->
 <!-- {{ listFavorites | async }} -->
 
-
+<!-- *ngIf="listFavorites" -->
 <div 
-*ngIf="listFavorites"
 class="row">
 
     <div 
-    *ngFor="let item of listFavorites"
+    *ngFor="let item of listFavorites | async"
     class="card mb-3" style="max-width: auto;">
         <div class="row g-0">
           <div class="col-md-4">
