@@ -13,11 +13,7 @@ export class ThemoviedbService {
   api_key = '0485653f382698e469f0eaa5b1d2769c';
   language: string = 'es-ES';
 
-
-
-  constructor( private http: HttpClient ) { 
-
-  }
+  constructor( private http: HttpClient ) {}
 
   getQuery(query: string){
     
@@ -36,20 +32,22 @@ export class ThemoviedbService {
     let media_type: string = 'movie';
     let time_window: string= 'day';
      
-    return this.getQuery(`trending/${ media_type }/${ time_window }?api_key=${ this.api_key }`)
-       //.pipe( map( (data:any) =>  data.results ));
+    return this.getQuery(`trending/${ media_type }/${ time_window }?api_key=${ this.api_key }&language=${ this.language }`)
+      .pipe( map( (data:any) => {
+      return data.results.slice(10); 
+      }));
 
   }
 
   // Obtener series tv popular
   getTvPopular(){
     
-    
     let page: number = 1;
 
     return this.getQuery(`tv/popular?language=${ this.language }&page=${ page }&api_key=${ this.api_key }`)
-      //.pipe( map( (data:any) =>  data.artists.items ));
-
+      .pipe( map( (data:any) => {
+        return data.results.slice(10); 
+      }));
   }
 
  // Obtener Peliculas Top
@@ -57,7 +55,9 @@ export class ThemoviedbService {
     
     let page: number = 1;
     return this.getQuery(`movie/top_rated?language=${ this.language }&page=${ page }&api_key=${ this.api_key }`)
-      .pipe( map( ( resp:any ) => resp.results ))
+      .pipe( map( (data:any) => {
+        return data.results.slice(0,4); 
+      }));
   }
 
   
@@ -66,8 +66,9 @@ export class ThemoviedbService {
   getSearch( term:string ){
     
     let page: number = 1;
-    let aquamaninclude_adult: boolean = false;
+    // let include_adult: boolean = false;
     return this.getQuery(`search/movie?language=${ this.language }&query=${ term }&page=${ page }&api_key=${ this.api_key }`)
+      .pipe( map( ( resp:any ) => resp.results ))
 
   }
 
@@ -80,6 +81,8 @@ export class ThemoviedbService {
     return this.getQuery(`movie/${ idMovie }?language=${ this.language }&api_key=${ this.api_key }`)
 
   }
+
+
 
   
 }

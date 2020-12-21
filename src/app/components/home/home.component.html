@@ -2,19 +2,35 @@
     Peliculas
 </h3>
 
-<div class="row">
+<app-preloader 
+*ngIf="loader"
+></app-preloader>
 
-    <div class="card text-white">
-        <img src="assets/img/test-banner.jfif" class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Nombre de pelicula</h5>
-          <p class="card-text">Mas popular</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
+<!-- mostPopularMovie -->
+<div class="row" >
+    <!-- *ngIf="mostPopularMovie?.length > 0" -->
+
+    <div class="card text-white img-fluid"
+    *ngIf="mostPopularMovie"
+    (click)="getMovieDetails( mostPopularMovie.id )"
+    >
+        <img 
+        [src]="mostPopularMovie.backdrop_path |  loadimg:'w':400" 
+        style="max-height: 35rem;"
+        class="img-fluid card-img" alt="...">
+        <div class="card-img-overlay text-center">
+          <h5 class="card-title fs-1">{{ mostPopularMovie.title }}</h5>
+          <p class="card-text fs-3">Mas popular</p>
+          <!-- <p class="card-text">Last updated 3 mins ago</p>  -->
+       </div>
       </div>
 
 </div>
-
+<!-- <pre 
+*ngIf="mostPopularMovie"
+>
+    {{ mostPopularMovie  | json}}
+</pre> -->
 <div class="row">
     <!-- <div> -->
         <!-- {{ listTrending | json }} -->
@@ -23,12 +39,12 @@
     </div> -->
 
     <!-- <app-carousel></app-carousel> -->
-    <p class="fs-3">
+    <!-- <p class="fs-3">
         Peliculas Populares
     </p> 
 
     <carousel
-        [images]="images">
+        [images]=" listTrending.poster_path | loadimg:'w':200 ">
     </carousel>
 
  
@@ -40,7 +56,7 @@
 
     <carousel
         [images]="images">
-    </carousel>
+    </carousel> -->
 
  
 </div>
@@ -55,12 +71,15 @@
     (click)="getMovieDetails( item.id )"
     class="col-md-3">
         <div class="card bg-dark text-white m-1">
-            <img src="assets/img/test.jpg" class="card-img" [alt]="item.title">
+            <img 
+            [src]=" item.poster_path | loadimg:'w':200 " 
+            class="img-fluid card-img" [alt]="item.title">
             <!-- <div class="card-img-overlay">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <p class="card-text">Last updated 3 mins ago</p>
             </div> -->
           </div>
+    
     </div>
 </div>

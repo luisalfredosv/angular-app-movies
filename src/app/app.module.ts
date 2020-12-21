@@ -23,6 +23,13 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 
 // Carousel
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { StoreModule } from '@ngrx/store';
+// import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { reducer } from './store/favorites/favorites.reducer';
+import { LoadimgPipe } from './pipes/loadimg.pipe';
+
 
 @NgModule({
   declarations: [
@@ -34,13 +41,20 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MovieDetailsComponent,
     FavoritesComponent,
     PreloaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoadimgPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule, // httpClient
     AppRoutingModule,
-    IvyCarouselModule // Carousel
+    IvyCarouselModule, // Carousel
+    StoreModule.forRoot({ MoviesFavoritas: reducer // Store
+    }),
+    StoreDevtoolsModule.instrument({ // Config devtools
+      maxAge: 25,
+      logOnly: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

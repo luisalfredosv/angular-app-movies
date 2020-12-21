@@ -1,21 +1,50 @@
 <h3>Buscar</h3>
 <div class="row">
-    <div class="col">
-        <div class="form-group">
-            <input type="text" class="form-control" 
-            #term
-            >
-            <button
-            (click)="search( term.value )"
-            type="button" class="btn btn-primary"
-            >Buscar
-            </button>
-        </div>
-    </div>
 
-    <div class="col">
-        <pre>
-            {{ resultsMovies | json }}
-        </pre>
+    <div class="input-group mb-3">
+        <input type="text"
+        #term
+        (keyup.enter)="search( term.value )"
+        class="form-control" placeholder="Buscar peliculas" aria-label="Buscar peliculas" aria-describedby="buscar">
+        <button 
+        (click)="search( term.value )"
+        class="btn btn-outline-primary" type="button" id="buscar">Buscar</button>
     </div>
+</div>
+
+<app-preloader 
+*ngIf="loader"
+></app-preloader>
+
+
+<div
+*ngIf="resultsMovies?.length > 0"
+>
+  <div class="text-center">
+    <h3>Resultados de la búsqueda</h3>
+  </div>
+
+  <div class="row">
+      <div 
+      *ngFor="let item of resultsMovies"
+      (click)="getMovieDetails( item.id )"
+      class="col-md-4 mt-2"
+      >
+
+        <div 
+        class="card" 
+        style="max-height: 35rem;"
+        >
+          <img 
+          [src]="item.poster_path | loadimg:'w':200"  
+          class="img-fluid card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">
+                {{ item.title }}
+            </h5>
+            <p class="card-text">{{ item.overview }}</p>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>

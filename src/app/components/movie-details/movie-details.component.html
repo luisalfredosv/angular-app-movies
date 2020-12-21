@@ -21,8 +21,10 @@
     <div class="col-md-4 text-center">
       
         <div>
-            <img src="assets/img/test.jpg" class="img-fluid" [alt]="detailsMovie.name" width="70%">
-    
+            <img 
+           [src]="detailsMovie.poster_path | loadimg:'w':200" 
+            class="img-fluid" [alt]="detailsMovie.name" width="70%">
+            <!-- backdrop_path -->
         </div>
             
             
@@ -58,7 +60,7 @@
     <div class="col-md-5"></div>
 
    <div class="col-md-7 mx-auto" style="margin-top: -0.50rem;">
-        <p class="fst-normal">
+        <p class="fst-normal lh-base fs-5">
             {{ detailsMovie.overview }}
         </p>
 
@@ -66,13 +68,17 @@
         <div class="row">
 
             <div class="col">
-            <button class="btn btn-primary" type="button">
+            <button 
+            (click)="addToFavorites(detailsMovie.id, detailsMovie.title, detailsMovie.poster_path, detailsMovie.release_date)"
+            class="btn btn-primary" type="button">
                 Agregar a Favoritos
             </button>
             </div>
 
             <div class="col">
-            <button class="btn btn-danger" type="button">
+            <button 
+            (click)="behind()"
+            class="btn btn-danger" type="button">
                 Regresar
             </button>
             </div>
